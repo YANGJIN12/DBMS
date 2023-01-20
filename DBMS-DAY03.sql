@@ -1,14 +1,14 @@
--- ±âº»Å°, ¿Ü·¡Å°, ERD
+-- ê¸°ë³¸í‚¤, ì™¸ë˜í‚¤, ERD
 
--- ±âº»Å°
--- Áßº¹µÇÁö¾Ê°í, ºñ¾îÀÖÀ¸¸é ¾ÈµÇ´Â Á¦¾àÁ¶°Ç
--- ´Ù¸¥ ¿ÜºÎÅ×ÀÌºí°úÀÇ ¿¬°á¼­À» À¯ÁöÇÏ±â À§ÇØ¼­
+-- ê¸°ë³¸í‚¤
+-- ì¤‘ë³µë˜ì§€ì•Šê³ , ë¹„ì–´ìˆìœ¼ë©´ ì•ˆë˜ëŠ” ì œì•½ì¡°ê±´
+-- ë‹¤ë¥¸ ì™¸ë¶€í…Œì´ë¸”ê³¼ì˜ ì—°ê²°ì„œì„ ìœ ì§€í•˜ê¸° ìœ„í•´ì„œ
 
--- ¿Ü·¡Å°
--- ´Ù¸¥ Å×ÀÌºí°úÀÇ ¿¬°á¼ºÀ» Á¦¾àÇÏ´Â Á¶°Ç
+-- ì™¸ë˜í‚¤
+-- ë‹¤ë¥¸ í…Œì´ë¸”ê³¼ì˜ ì—°ê²°ì„±ì„ ì œì•½í•˜ëŠ” ì¡°ê±´
 
--- ±âº»Å°´Â ¿Ü·¡Å°¿Í ¿¬°áµÇ±â À§ÇØ¼­ Á¸ÀçÇÔ
--- ¿Ü·¡Å°¸¦ ±âº»Å°°¡ ¾Æ´Ñ°Í°ú ¿¬°áÇÏ¸é ¿À·ù°¡ ¹ß»ıÇÔ(oracleÀÌ ¾Æ´Ï¸é °¡´ÉÇÔ) 
+-- ê¸°ë³¸í‚¤ëŠ” ì™¸ë˜í‚¤ì™€ ì—°ê²°ë˜ê¸° ìœ„í•´ì„œ ì¡´ì¬í•¨
+-- ì™¸ë˜í‚¤ë¥¼ ê¸°ë³¸í‚¤ê°€ ì•„ë‹Œê²ƒê³¼ ì—°ê²°í•˜ë©´ ì˜¤ë¥˜ê°€ ë°œìƒí•¨(oracleì´ ì•„ë‹ˆë©´ ê°€ëŠ¥í•¨) 
 
 
 create table A(
@@ -23,12 +23,12 @@ create table B(
     constraint fk foreign key (keycode,keycode2) references A(keycode,keycode2)
 );
 
--- ERD(Entity Releational Diagram)
+-- ERD(Entity Relationship Diagram)
 
 create table person(
     name nvarchar2(20) not null,
     regist nvarchar2(15) primary key,
-    gender nvarchar2(2) check(gender in('³²','¿©'))
+    gender nvarchar2(2) check(gender in('ë‚¨','ì—¬'))
 );
 
 create table student(
@@ -44,7 +44,7 @@ create table employee(
     constraint fk_ep foreign key (regist) references person(regist)
 );
 
--- not null ¼öÁ¤
+-- not null ìˆ˜ì •
 -- alter table employee modify 
 
 -- insert
@@ -57,38 +57,38 @@ insert into student values ('123456-31231748', 58, 2065747);
 insert into student values ('123456-31231129', 75, 2065749);
 insert into student values ('123456-31231455', 80, 2065746);
 
-insert into person values ('È«±æµ¿', '123456-3123164', '³²');
-insert into person values ('ÀÌÁö¼ö', '123456-3123174', '¿©');
-insert into person values ('È«Áø´ö', '123456-3123167', '³²');
-insert into person values ('¹Ú±¤´ö', '123456-3123168', '³²');
+insert into person values ('í™ê¸¸ë™', '123456-3123164', 'ë‚¨');
+insert into person values ('ì´ì§€ìˆ˜', '123456-3123174', 'ì—¬');
+insert into person values ('í™ì§„ë•', '123456-3123167', 'ë‚¨');
+insert into person values ('ë°•ê´‘ë•', '123456-3123168', 'ë‚¨');
 
--- insertÀÇ ¿ø¸®
--- index > ¸ñÂ÷
--- ¹¬½ÃÀû Çã¿ë
+-- insertì˜ ì›ë¦¬
+-- index > ëª©ì°¨
+-- ë¬µì‹œì  í—ˆìš©
 insert into person
 (regist, name)
 values
-('123456-1234576', 'È«±æµ¿')
+('123456-1234576', 'í™ê¸¸ë™')
 ;
 
--- ¹¬½ÃÀû Çã¿ë¾øÀÌ ¸ğµç µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ´Â employee insert¸¦ ÇÏ½Ã¿À
--- ¹¬½ÃÀû Çã¿ëÀ» ÀÌ¿ëÇÏ¿© regist¸¸ ÀÔ·ÂÇÏ´Â student insert¸¦ ÇÏ½Ã¿À
+-- ë¬µì‹œì  í—ˆìš©ì—†ì´ ëª¨ë“  ë°ì´í„°ë¥¼ ì…ë ¥í•˜ëŠ” employee insertë¥¼ í•˜ì‹œì˜¤
+-- ë¬µì‹œì  í—ˆìš©ì„ ì´ìš©í•˜ì—¬ registë§Œ ì…ë ¥í•˜ëŠ” student insertë¥¼ í•˜ì‹œì˜¤
 
 insert into employee (regist, payment) values ('123456-1234541', 123);
 insert into student (regist) values ('123456-1234578');
 
--- select > ¼±ÅÃÇÏ´Ù
+-- select > ì„ íƒí•˜ë‹¤
 select name, gender, person.regist, student.regist, score, code from person, student;
 
--- Á¶°Ç
+-- ì¡°ê±´
 select name, gender, person.regist, student.regist, score, code from person, student where score < 70;
 
 select regist, score +1 +1 as score from student;
 
 
--- ÇĞ»ı Á¤º¸¿Í ¾Ë¹Ù»ı Á¤º¸¸¦ ¿«¾î¼­ Ãâ·ÂÇÏµÇ ¿ù±Ş Á¤º¸¸¦ µÎ¹è·Î ´Ã¸®½Ã¿À
--- ÇĞ»ı Á¤º¸ Áß Á¡¼ö¸¸ + 50ÇÏ¿© Ãâ·ÂÇÏ½Ã¿À
--- ¾Ë¹Ù»ı Á¤º¸¿Í ÇĞ»ı Á¤º¸¸¦ ¿«¾î¼­ ¿ù±Ş * Á¡¼ö¸¦ Ãâ·ÂÇÏ½Ã¿À
+-- í•™ìƒ ì •ë³´ì™€ ì•Œë°”ìƒ ì •ë³´ë¥¼ ì—®ì–´ì„œ ì¶œë ¥í•˜ë˜ ì›”ê¸‰ ì •ë³´ë¥¼ ë‘ë°°ë¡œ ëŠ˜ë¦¬ì‹œì˜¤
+-- í•™ìƒ ì •ë³´ ì¤‘ ì ìˆ˜ë§Œ + 50í•˜ì—¬ ì¶œë ¥í•˜ì‹œì˜¤
+-- ì•Œë°”ìƒ ì •ë³´ì™€ í•™ìƒ ì •ë³´ë¥¼ ì—®ì–´ì„œ ì›”ê¸‰ * ì ìˆ˜ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤
 
 select payment * 2 as payment from student, employee;
 select regist, score + 50, code as score from student;
